@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFDD00"
+    android:orientation="vertical">
+<!--
+선형레이아웃, 방향성을 가지는 레이아웃
+수평방향:horizontal
+수직방향:vertical
+-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/form"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+             <EditText
+                 style="@style/login_form"
+                 android:hint="아이디입력"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+             <EditText
+                 style="@style/login_form"
+                 android:hint="비밀번호입력"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+
+             <EditText
+                 style="@style/login_form"
+                 android:hint="이름입력"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_alignLeft="@id/form"
+            android:layout_below="@id/form"
+            android:text="가입하기"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="regist"
+            />
+
+        <Button
+            android:layout_alignRight="@id/form"
+            android:layout_below="@id/form"
+            android:text="로그인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</LinearLayout>

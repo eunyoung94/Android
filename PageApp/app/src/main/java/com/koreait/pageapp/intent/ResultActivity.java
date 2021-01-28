@@ -31,14 +31,14 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     //나를 호출한 액티비티에 데이터를 전달하자 주로 결과전달시 사용된다
-    public void close(View view){
-        send();
+    public void close(View view){ //닫기를 눌렀을때!
+        send(); //보내는 메서드
     }
     public void send(){
         //보낼 데이터 구성하기
         Intent intent = new Intent(); //명시하지 않는 이유? 우리가 원하는건 새롭게 생성된 액티비티가 아니기 때문
         //즉 기존 액티비티와 소통해야한다.
-        Member member = new Member();
+        Member member = new Member(); //memberVO 안에 넣어주기!
         member.setId(t_id.getText().toString());
         member.setPass(t_pass.getText().toString());
         member.setName(t_name.getText().toString());

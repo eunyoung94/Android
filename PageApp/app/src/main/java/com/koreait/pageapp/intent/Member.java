@@ -34,6 +34,7 @@ public class Member implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
     //보내기위해, 직렬화 후 저장
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);

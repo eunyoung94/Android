@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.koreait.pageapp.R;
+import com.koreait.pageapp.intent.ReceiveActivity;
+import com.koreait.pageapp.intent.ResultActivity;
 
 public class FormActivity extends AppCompatActivity implements View.OnClickListener {
     String TAG=this.getClass().getName();
@@ -46,13 +48,13 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
     //다른 액티비티를 호출하자!
     public void send(){
         //아래와 같이 대상 클래스를 정확히 명시하는 인텐트 사용법을 가리켜 명시적(Implicit) 인텐트라고 한다.
-        Intent intent = new Intent(this,ReceiveActivity.class);
+        Intent intent = new Intent(this, ReceiveActivity.class);
         //Intent는 jsp의 request, session ,application 객체처럼 데이터를 심을 수 있다.
         Member member = new Member();
         member.setId(t_id.getText().toString());
         member.setPass(t_pass.getText().toString());
         member.setName(t_name.getText().toString());
-        startActivity(intent);
+
 
         //intent에 알맞는 자료 심기
         Bundle bundle = new Bundle();
@@ -62,17 +64,19 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
     }
     //다른 엑티비티를 호출하되 , 다시 전달 받을것을 두고 코드를 작성
     public void sendAndGet(){
-        Intent intent = new Intent(this,ResultActivity.class);
+        Intent intent = new Intent(this, ResultActivity.class);
+        //전달할 데이터 구성
         Member member = new Member();
         member.setId(t_id.getText().toString());
         member.setPass(t_pass.getText().toString());
         member.setName(t_name.getText().toString());
-        startActivity(intent);
 
         //intent에 알맞는 자료 심기
         Bundle bundle = new Bundle();
         bundle.putParcelable("member",member);
         intent.putExtra("data",bundle);
+        //그냥 출발이 아니라, 결과를 받아올 것을 염두해둔 출발
+        //매개변수 : 전달할 데이터 , 요청 구분코드
         startActivityIfNeeded(intent,REQUEST_CODE);
     }
 
@@ -83,7 +87,7 @@ public class FormActivity extends AppCompatActivity implements View.OnClickListe
         if(REQUEST_CODE==requestCode){//보장받은 응답
             if(resultCode==this.RESULT_OK){//성공의 응답이라면..
                 Bundle bundle=data.getBundleExtra("data");
-                Member member=bundle.getParcelable("member");
+                Member member=(Member)bundle.getParcelable("member");
                 t_id.setText(member.getId());
                 t_pass.setText(member.getPass());
                 t_name.setText(member.getName());

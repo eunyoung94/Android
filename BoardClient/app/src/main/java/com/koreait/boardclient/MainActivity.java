@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.d(TAG,json.toString());
 
-                    //httpManager.requestByPost("http://192.168.0.22/rest/board",null);
+                    httpManager.requestByPost("http://192.168.0.22/rest/board",json.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         //네트워크 통신을 위한 쓰레드 생성 및 실행
         Thread thread = new Thread(){
             public void run() {
-                ArrayList<Board> boardList = httpManager.requestByGet("http://192.168.0.22/rest/board");
+                ArrayList<Board> boardList = httpManager.requestByGet("http://192.168.0.22:7777/rest/board");
 
                 //핸들러에 요청 시점
                 Message message = new Message();

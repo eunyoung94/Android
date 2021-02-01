@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.koreait.scaduleapp.R;
 
-//투명도를 실습하기 위한 페이지
+//투명도를 실습하기 위한 페이지 +++
 public class RotateFragment extends Fragment {
     ImageView imageView;
     Button bt_start;

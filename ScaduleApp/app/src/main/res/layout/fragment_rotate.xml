@@ -2,9 +2,23 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#2D6730"
     android:layout_height="match_parent">
     <TextView
         android:text="회전 에니메이션"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/imgView"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/bt_start"
+        android:text="이미지 회전"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>

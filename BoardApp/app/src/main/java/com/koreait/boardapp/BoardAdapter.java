@@ -1,7 +1,6 @@
 package com.koreait.boardapp;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -19,13 +18,19 @@ import java.util.List;
 public class BoardAdapter extends BaseAdapter {
     String TAG=this.getClass().getName();
     MainActivity mainActivity;
-    LayoutInflater layoutInflater; //XML을 자바 객체화시켜주는 객체
-    List<Board> data = new ArrayList<Board>();
+    List<String> data = new ArrayList<String>();
 
     public BoardAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        layoutInflater = mainActivity.getLayoutInflater();
 
+        data.add("사과");
+        data.add("바나나");
+        data.add("딸기");
+        data.add("오렌지");
+        data.add("파인애플");
+        data.add("멜론");
+        data.add("레몬");
+        data.add("오렌지");
     }
 
     public int getCount() {
@@ -56,15 +61,16 @@ public class BoardAdapter extends BaseAdapter {
         //기존에 아잍쳄 본인이 가지고 잇었던 기존뷰( old view)를 재사용하는것이 메모리 효율상 좋다..
         View view=null;
         if(convertView==null) { //학생증 발급이 필요한 애들은...즉 새롭게 태어난 애들..
-            //여기서 리스트뷰에 보여질 하나의 아이템을 이룰 복합 뷰를 생성한다!!(xml로부터 인플레이션 시키자!!)
-            //false해야, parent 인 ListView 가 아닌, 인플레이션 대상 xml의 최상위 뷰그룹이 반환된다..즉 아이템의 최상위
-            View parentView = layoutInflater.inflate(R.layout.board_item, parent, false);
-            Log.d(TAG, "parentView is "+parentView);
-            view = parentView;
+            TextView tv = new TextView(mainActivity);
+            tv.setText(data.get(position));
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, 300);
+            tv.setLayoutParams(params);
+            view=tv;
         }else{//이미 학생증 발급받은 애는...지가 가지고 있었던 학생증 아이디 대입..
             view=convertView;
         }
-        Log.d(TAG, data.get(position)+"의 뷰는 "+view+", parent 는 "+parent);
+        Log.d(TAG, data.get(position)+"의 뷰는 "+view);
         //Log.d(TAG, data.get(position)+"의 convertView 는 "+convertView);
 
         return view;

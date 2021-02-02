@@ -10,14 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:id="@+id/text_profile"
         android:src="@drawable/profile" />
 
     <LinearLayout
+        android:id="@+id/text_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:id="@+id/text_root"
         android:orientation="vertical">
 
         <TextView
@@ -26,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="ID: eunyoung" />
+            android:text="ID : mario" />
 
         <TextView
             android:id="@+id/t_pass"
@@ -34,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Pass: 12**" />
+            android:text="Pass : 568***" />
 
         <TextView
             android:id="@+id/t_name"
@@ -42,8 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Name: 은영" />
+            android:text="Name : 마리오" />
 
     </LinearLayout>
-
 </LinearLayout>

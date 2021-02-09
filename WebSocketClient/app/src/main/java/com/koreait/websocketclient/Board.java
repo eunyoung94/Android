@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Board implements Parcelable {
-
     private int board_id;
     private String title;
     private String writer;
@@ -13,10 +12,9 @@ public class Board implements Parcelable {
     private int hit;
 
     public Board(){
-
     }
 
-    //데이터 받을때
+    //데이터 받을때..
     protected Board(Parcel in) {
         board_id = in.readInt();
         title = in.readString();
@@ -99,7 +97,5 @@ public class Board implements Parcelable {
         dest.writeString(content);
         dest.writeString(regdate);
         dest.writeInt(hit);
-
-
     }
 }

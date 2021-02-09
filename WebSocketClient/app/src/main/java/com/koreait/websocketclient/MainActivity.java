@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     BoardAdapter boardAdapter;
     Handler handler;
-    DetailDialog detailDialog;
+    DetailDialog detailDialog;//상세보기 새창
+    RegistDialog registDialog;//등록 새창
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +52,15 @@ public class MainActivity extends AppCompatActivity {
         boardDAO = new BoardDAO(this);
         createSocket();
 
-        //리스트뷰와 리스너 연결
+        //리스트뷰와 리스너연결
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                Log.d(TAG,"parent="+parent);
-                Log.d(TAG,"view="+view);
-                Log.d(TAG,"position="+position);
-                Log.d(TAG,"id="+id);
+                Log.d(TAG, "parent = "+parent);
+                Log.d(TAG, "view = "+view);
+                Log.d(TAG, "position = "+position);
+                Log.d(TAG, "id = "+id);
 
-                getDetail((int) id);
+                getDetail((int)id);
             }
         });
 
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     //앱이 가동됨과 동시에 웹소켓서버와 접속 시도
     public void createSocket(){
         try {
-            myWebSocketClient = new MyWebSocketClient(new URI("ws://172.30.1.8:9999"),this);
+            myWebSocketClient = new MyWebSocketClient(new URI("ws://192.168.0.22"), this);
             myWebSocketClient.connect();//접속!!
             getList();
         } catch (URISyntaxException e) {
@@ -88,18 +88,27 @@ public class MainActivity extends AppCompatActivity {
         };
         thread.start();
     }
+
     public void getDetail(int board_id){
-        //웹서버에서 데이터를 한건 가져와도 되지만, 네트워크보다는 현재 메모리에 존재하는 객체를 접근하는게 훨씬 빠르다!
-        detailDialog=new DetailDialog(this);
+
+        //상세보기 대화 상자 띄우기!!  , 새창은 단독으로 존재할 수 없으므로,
+        //반드시 액티비티를 인수로 넘겨야 함
+        detailDialog = new DetailDialog(this);
         detailDialog.show();
 
-        for(Board board:boardAdapter.boardList){
+        //웹서버에서 데이터를 한건 가져와도 되지만, 네트워크보다는 현재 메모리에
+        //존재하는 객체를 접근하는게 훨 빠르다!!!
+        for(Board board : boardAdapter.boardList){
             if(board.getBoard_id()==board_id){
                 detailDialog.setData(board);
                 break;
             }
         }
-        detailDialog.show();
     }
 
+    //등록하기 다이얼로그 폼 띄우기!!
+    public void regist(View view){
+        registDialog = new RegistDialog(this);
+        registDialog.show();
+    }
 }
